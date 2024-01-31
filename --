@@ -1,0 +1,29 @@
+[33mcommit 147d58ef131fffeeb67509a8e54ca3f01b137095[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Simone Putzu <putzu.simone10@gmail.com>
+Date:   Tue Jan 30 11:43:52 2024 +0100
+
+    Aggiornato makefile
+
+[33mcommit d692def183f5e9c7fbf64ab90a287b8d3154a5a1[m
+Author: Simone Putzu <putzu.simone10@gmail.com>
+Date:   Tue Jan 30 11:40:15 2024 +0100
+
+    Aggiunta la griglia base e i tetramini di default
+
+[33mcommit f2a050bbd1877273d07f7dfbfef742d6dd20b1f6[m
+Author: Simone Putzu <putzu.simone10@gmail.com>
+Date:   Tue Jan 30 11:11:25 2024 +0100
+
+    Aggiornato makefile per supportare Tetramino
+
+[33mcommit dcc02d936e482e1d166be1f56cdc0c836faff20a[m
+Author: Simone Putzu <putzu.simone10@gmail.com>
+Date:   Tue Jan 30 11:08:40 2024 +0100
+
+    Aggiunti Tetramini con sola funzione move
+
+[33mcommit 09cc386802bbbbea3c91045d4f9cedf2a5e9c36a[m
+Author: Simone Putzu <putzu.simone10@gmail.com>
+Date:   Tue Jan 30 10:52:26 2024 +0100
+
+    Primo commit. Menu funzionante
