@@ -14,5 +14,11 @@ class Grid{
         void removeBlock();
         bool checkDirection(int);
         void moveDirection(int);
-        void moveDownDelayed();
+        void moveDownDelayed(int);
+        void rotation(bool);
+        void game();
+        int removeLines();
+        bool checkCompleted(int);
+        bool checkBlockArea();
+        
 };
