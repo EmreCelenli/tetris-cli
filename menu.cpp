@@ -1,19 +1,16 @@
-#include "menu.hpp"
+#include "Menu.hpp"
 
-int menu(WINDOW * win){
+Menu::Menu(WINDOW * win){
+    this->win = win;
+    getmaxyx(this->win, yMax, xMax);
+    highlight = 0;
+    xHalf = xMax/2;
+    yHalf = yMax/2;
+}
 
-    int ch;
-    int xMax, yMax;
-    getmaxyx(win, yMax, xMax);
-    const int xHalf = xMax/2;
-    const int yHalf = yMax/2;
-
-    string choices[3] = {"NUOVA PARTITA", "CLASSIFICA", "ESCI"};
-               
-    int highlight = 0;       
-
-    keypad(win, true);
+int Menu::getChoice(){
     
+    keypad(win, true);
 
     while(1){
         int x[3] = {xHalf - 6, xHalf - 5, xHalf - 2};
@@ -22,38 +19,36 @@ int menu(WINDOW * win){
         for(int i = 0; i < 3; i++){
             if(i == highlight){
                 wattron(win, A_BOLD);
-                wattron(win, A_ITALIC);
+                // wattron(win, A_ITALIC);
             }
             mvwprintw(win, y, x[i], choices[i].c_str());
             wattroff(win, A_BOLD);
-            wattroff(win, A_ITALIC);
-            refresh();
+            // wattroff(win, A_ITALIC);
+            wrefresh(win);
             y += 2;
         }
         
-        ch = wgetch(win);
+        int ch = wgetch(win);
         
         switch(ch){
-        case KEY_UP:
-            if(highlight == 0)
-                highlight = 2;
-            else
-                highlight--;    
-            break;
-        case KEY_DOWN:
-            if(highlight == 2)
-                highlight = 0;
-            else
-                highlight++; 
-            break;
-        default:
-            break;
+            case KEY_UP:
+                if(highlight == 0)
+                    highlight = 2;
+                else
+                    highlight--;    
+                break;
+            case KEY_DOWN:
+                if(highlight == 2)
+                    highlight = 0;
+                else
+                    highlight++; 
+                break;
+            default:
+                break;
         }
 
-        if(ch == 10){
-            break;
-        }
+        if(ch == 10) 
+            return highlight;
+            
     }
-
-    return highlight;
 }

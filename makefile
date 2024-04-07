@@ -1,14 +1,14 @@
-main: main.o menu.o game.o scores.o 
-	g++ -o main main.o menu.o game.o scores.o -lncurses
+main: main.o Menu.o Tetramino.o Grid.o
+	g++ -o main main.o Menu.o Tetramino.o Grid.o -lncurses
 
-main.o: main.cpp main.hpp
+main.o: main.cpp 
 	g++ -c main.cpp 
 
-menu.o: menu.cpp menu.hpp
-	g++ -c menu.cpp
+Menu.o: Menu.cpp Menu.hpp
+	g++ -c Menu.cpp
 
-game.o: game.cpp game.hpp
-	g++ -c game.cpp
+Tetramino.o: Tetramino.cpp Tetramino.hpp
+	g++ -c Tetramino.cpp
 
-scores.o: scores.cpp scores.hpp
-	g++ -c scores.cpp
+Grid.o: Grid.cpp Grid.hpp
+	g++ -c Grid.cpp
