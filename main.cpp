@@ -20,14 +20,16 @@ int main(){
             wrefresh(menuwin);
             delwin(menuwin);
             refresh();
-            
-            WINDOW * gridwin = newwin(20, 10, 0, 0);
+            WINDOW * boxwin = newwin(22, 22, 0, 0);
+            box(boxwin, 0, 0);
+            wrefresh(boxwin);
+            WINDOW * gridwin = newwin(20, 20, 1, 1);
             Grid grid(gridwin);
+            keypad(gridwin, true);
             grid.displayGrid();
-            int direction = wgetch(gridwin);
-            grid.moveDirection(direction);
-            wgetch(gridwin);
-
+            grid.game();
+            
+           
             
             getch();
         }
