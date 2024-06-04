@@ -93,6 +93,8 @@ int Tetramino::isOut(){
             isOut = 1;
         else if(block[i].x < 0)
             isOut = -1;
+        else if(block[i].y < 0)
+            isOut = 2;
     }
 
     return isOut;

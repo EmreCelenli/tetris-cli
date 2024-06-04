@@ -29,4 +29,5 @@ class Tetramino{
         void convertCoordinates(point [], point []);
         int getID();
         int isOut();
+        bool isOutUP();
 };

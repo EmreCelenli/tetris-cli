@@ -1,5 +1,5 @@
-main: main.o Menu.o Tetramino.o Grid.o
-	g++ -o main main.o Menu.o Tetramino.o Grid.o -lncurses
+main: main.o Menu.o Tetramino.o Grid.o Scores.o
+	g++ -o main main.o Menu.o Tetramino.o Grid.o Scores.o -lncurses
 
 main.o: main.cpp 
 	g++ -c main.cpp 
@@ -12,3 +12,6 @@ Tetramino.o: Tetramino.cpp Tetramino.hpp
 
 Grid.o: Grid.cpp Grid.hpp
 	g++ -c Grid.cpp
+
+Scores.o: Scores.cpp Scores.hpp
+	g++ -c Scores.cpp 

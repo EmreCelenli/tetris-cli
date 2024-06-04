@@ -1,5 +1,7 @@
 #include <ncurses.h>
+#include <fstream>
 #include <string>
+#include <cstring>
 
 class Menu{
     protected:

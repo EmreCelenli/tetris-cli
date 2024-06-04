@@ -89,11 +89,9 @@ void Grid::moveDownDelayed(int delay = 10){
         if(command != ERR){ 
             switch(command){
                 case 97: 
-                    mvwprintw(win, 0, 0, "A");
                     rotation(false);
                     break;
                 case 100:
-                    mvwprintw(win, 0, 0, "D");
                     rotation(true);
                     break;
                 default:
@@ -112,7 +110,7 @@ void Grid::game(){
     while(!startOccupied){
         addBlock();
         moveDownDelayed();
-        removeLines();
+        removeAllLines();
 
         Tetramino newblock;
         block = newblock;
@@ -121,27 +119,24 @@ void Grid::game(){
     }
 }
 
-int Grid::removeLines(){
-    int removed = 0;
-    int lowest_line = -1;
+
+void Grid::removeAllLines(){
     for(int i = 0; i < 20; i++){
         if(checkCompleted(i)){
-            for(int j = 0; j < 10; j++)
+            for(int j = 0; j < 10; j++){
                 grid[i][j] = false;
-                if(i > lowest_line)
-                    lowest_line = i;
-            removed++;
+            }  
+            moveDownLines(i); 
+            removedLines++;         
         }
-    }
+    }  
+}
 
-    for(int i = 0; i < removed; i++){
-        for(int j = lowest_line; j > 0; j--){
-            for(int k = 0; k < 10; k++)
-                grid[j][k] = grid[j-1][k];
-        }
+void Grid::moveDownLines(int line){
+    for(int i = line; i > 0; i--){
+        for(int j = 0; j < 10; j++)
+            grid[i][j] = grid[i-1][j];
     }
-
-    return removed;
 }
 
 bool Grid::checkCompleted(int line){ // controlla che una riga sia completa
@@ -179,9 +174,10 @@ void Grid::rotation(bool clockwise){ // 1 vuol dire clockwise 0 vuol dire counte
             block.move(KEY_RIGHT);
         while(block.isOut() == 1)
             block.move(KEY_LEFT);
-        while(checkBlockArea()){
+        while(block.isOut() == 2)
+            block.move(KEY_DOWN);
+        while(checkBlockArea())
             block.move(KEY_UP);
-        }
 
         addBlock();
     }    

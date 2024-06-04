@@ -19,11 +19,11 @@ int Menu::getChoice(){
         for(int i = 0; i < 3; i++){
             if(i == highlight){
                 wattron(win, A_BOLD);
-                wattron(win, A_ITALIC);
+                //wattron(win, A_ITALIC);
             }
             mvwprintw(win, y, x[i], choices[i].c_str());
             wattroff(win, A_BOLD);
-            wattroff(win, A_ITALIC);
+            //wattroff(win, A_ITALIC);
             wrefresh(win);
             y += 2;
         }
@@ -51,4 +51,6 @@ int Menu::getChoice(){
             return highlight;
             
     }
+
+
 }
