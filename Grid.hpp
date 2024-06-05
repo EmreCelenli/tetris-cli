@@ -7,7 +7,7 @@ class Grid{
         WINDOW * win;
         Tetramino block;
         bool grid[20][10];
-        int removedLines;
+        //int removedLines;
     public:
         Grid(WINDOW *);
         void addBlock();
@@ -17,10 +17,10 @@ class Grid{
         void moveDirection(int);
         void moveDownDelayed(int);
         void rotation(bool);
-        void game();
+        int game(WINDOW *);
         int removeLines();
         bool checkCompleted(int);
         bool checkBlockArea();
         void moveDownLines(int);
-        void removeAllLines();
+        int removeAllLines();
 };

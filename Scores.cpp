@@ -5,7 +5,7 @@ Score::Score(){
         clear_lines = 0;
 }
 
-void Score::update_score(int l = 0){
+void Score::update_score(int l){
     clear_lines = clear_lines + l;
     switch (l) {
         case 1:
@@ -26,11 +26,11 @@ void Score::update_score(int l = 0){
     }
 }
 
-void Score::display_score(){
-        mvprintw(0, 0, "Score:%d", score);
-        refresh();
-        mvprintw(0, 0, "Lines Cleared:%d", clear_lines);
-        refresh();
+void Score::display_score(WINDOW * win){
+        mvwprintw(win, 0, 0, "Score:%d", score);
+        wrefresh(win);
+        mvwprintw(win, 1, 0, "Lines Cleared:%d", clear_lines);
+        wrefresh(win);
 }
 
 int Score::get_clearlines(){
@@ -44,7 +44,7 @@ int Score::get_score(){
 void Score::get_score_str(char score_str[100]) {
         sprintf(score_str, "%d", score);
 }
-
+/*
 Classifica::Classifica(int score, int clear_lines, int scores[10], int count, WINDOW *win): Score(){
         for (int i = 0; i < 10; i++){
             this->scores[i] = scores[i];
@@ -54,7 +54,12 @@ Classifica::Classifica(int score, int clear_lines, int scores[10], int count, WI
         this->win = win;
 }
     
-void Classifica::update_classifica(int score, int clear_lines) {
+void Classifica::update_classifica(int score) {
+    for(int i = 0; i < 100; i++){
+
+    }
+
+    /*
     int index = 0;
     while (index < 10 && scores[index] >= score) {
         index++;
@@ -70,11 +75,12 @@ void Classifica::update_classifica(int score, int clear_lines) {
 
 
 void Classifica::display_classifica() {
-    mvwprintw(win, 3, 3, "Classifica:");
+    mvwprintw(win, 3, 3, "Scores:");
     for (int i = 0; i < 10; i++) {
         mvwprintw(win, 4 + i, 3, "%d. %d", i + 1, scores[i]);
     }
     wrefresh(win);
+    wgetch(win);
 }
     
     
@@ -106,3 +112,5 @@ void Classifica::invert_sorted(int scores[10]){
         swap(scores[i], scores[10-i-1]);
     }
 }
+
+*/

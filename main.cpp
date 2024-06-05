@@ -1,7 +1,8 @@
 #include "Menu.hpp"
 #include "Grid.hpp"
 #include "Scores.hpp"
-#include "Tetramino.hpp"
+#include "Classifica.hpp"
+
 
 using namespace std;
 
@@ -10,12 +11,12 @@ int main(){
     noecho();
     curs_set(0);
 
-
-    Score score;
-    int scores[10] = {0};
-    WINDOW* win = nullptr; 
-    int count = 0; 
-    Classifica classifica(score.get_score(), score.get_clearlines(), scores, count, win);   
+    WINDOW * classificawin = newwin(22, 22, 0, 0);
+    Classifica classifica(classificawin);
+    //int scores[10] = {0};
+    //WINDOW* win = nullptr; 
+    //int count = 0; 
+    //Classifica classifica(score.get_score(), score.get_clearlines(), scores, count, win);   
 
 
     int sel;
@@ -43,11 +44,16 @@ int main(){
             Grid grid(gridwin);
             keypad(gridwin, true);
             grid.displayGrid();
-            grid.game();
-            int cleared_lines = score.get_clearlines();
-            score.update_score(cleared_lines);
-            classifica.update_classifica(score.get_score(), cleared_lines);
-            classifica.display_classifica();
+            WINDOW * scorewin = newwin(30, 30, 0, 23);
+            //wprintw(scorewin, "%d", sel);
+            //wrefresh(scorewin);
+            int gamescore = grid.game(scorewin);
+            classifica.update_classifica(gamescore);
+            //int cleared_lines = score.get_clearlines();
+            //score.update_score(cleared_lines);
+            //classifica.update_classifica(score.get_score(), cleared_lines);
+            //score.display_score(scorewin);
+            char score_str[100];
             getch();
         }
 
@@ -59,10 +65,13 @@ int main(){
             WINDOW * boxwin = newwin(22, 22, 0, 0);
             box(boxwin, 0, 0);
             wrefresh(boxwin);
-
+            
             // fstream
             char score_str[100];
-            score.get_score_str(score_str);
+            classifica.display_classifica();
+            //score.get_score_str(score_str);
+
+            /*
             ofstream file("scores.txt", ios::app); // append mode
             if (file.is_open()) {
                 file << score_str << endl;
@@ -73,7 +82,8 @@ int main(){
                 mvprintw(1, 1, "Unable to open file for writing");
                 refresh();
             }
-
+            */
+            /*
             ifstream obj("scores.txt");
             if (obj.is_open()) {
                 int row = 1;
@@ -86,6 +96,7 @@ int main(){
                 mvprintw(1, 1, "Unable to open file for reading");
                 refresh();
             }
+            */
         }
 
     } while(sel != 2);

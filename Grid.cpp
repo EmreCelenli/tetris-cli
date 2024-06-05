@@ -1,4 +1,5 @@
 #include "Grid.hpp"
+#include "Scores.hpp"
 
 Grid::Grid(WINDOW * win) : block(){
     this->win = win;
@@ -105,22 +106,27 @@ void Grid::moveDownDelayed(int delay = 10){
     }
 }
 
-void Grid::game(){
+int Grid::game(WINDOW * win){
+    Score score;
     bool startOccupied = false;
     while(!startOccupied){
+        score.display_score(win);
         addBlock();
         moveDownDelayed();
-        removeAllLines();
-
+        int cleared_lines = removeAllLines();
+        score.update_score(cleared_lines);
+        score.display_score(win);
         Tetramino newblock;
         block = newblock;
 
         startOccupied = checkBlockArea();        
     }
+    return score.score;
 }
 
 
-void Grid::removeAllLines(){
+int Grid::removeAllLines(){
+    int removedLines = 0;
     for(int i = 0; i < 20; i++){
         if(checkCompleted(i)){
             for(int j = 0; j < 10; j++){
@@ -130,6 +136,7 @@ void Grid::removeAllLines(){
             removedLines++;         
         }
     }  
+    return removedLines;
 }
 
 void Grid::moveDownLines(int line){
