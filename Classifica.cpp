@@ -1,18 +1,8 @@
+#include "Classifica.hpp"
+
 
 Classifica::Classifica(WINDOW *win){
-    ifstream obj("scores.txt");
-        if (obj.is_open()) {
-            char line[100]; 
-            int i = 0;
-            while (obj.getline(line, 100)) {
-                scores[i] = atoi(line);
-                i++;
-            }
-            obj.close();
-        }
-    for (int i = 0; i < 10; i++){
-        this->scores[i] = atoi(score_str[i]);
-    }
+    read_classifica();
     this->win = win;
 }
     
@@ -30,11 +20,13 @@ void Classifica::update_classifica(int score){
         }
         scores[i] = score;
     }  
+    write_classifica();
 }
 
 
 
 void Classifica::display_classifica(){
+    read_classifica();
     mvwprintw(win, 3, 3, "Scores:");
     for (int i = 0; i < 10; i++) {
         mvwprintw(win, 4 + i, 3, "%d. %d", i + 1, scores[i]);
@@ -44,19 +36,39 @@ void Classifica::display_classifica(){
 }
 
 void Classifica:: write_classifica(){
+    ofstream file("scores.txt", ios::out); // out mode
     for(int i = 0; i < 10; i++){
         char score_str[100];
-        sprintf(score_str, "%d", score);
-          ofstream file("scores.txt", ios::app); // append mode
+        sprintf(score_str, "%d", scores[i]);
             if (file.is_open()) {
-                file << score_str << endl;
-                file.close();  
+                file << scores[i] << endl;  
             } 
-    }
-} 
+    }  
+    file.close(); 
+}
 
 void Classifica:: read_classifica(){
+    ifstream obj("scores.txt");
+        if (obj.is_open()) {
+            char line[100]; 
+            for(int i = 0; i < 10; i++){
+                if(obj.getline(line, 100)){
+                    scores[i] = stoi(line);
+                }    
+            }
+            obj.close();
+        }
+}
+
+void Classifica:: initialize_classifica(){
+    ofstream file("scores.txt");
     for(int i = 0; i < 10; i++){
-        scores[i] 
+        file << "0" << endl;
     }
+    file.close();
+}
+
+bool Classifica::fileExists(){
+    ifstream file("scores.txt");
+    return file.is_open();
 }

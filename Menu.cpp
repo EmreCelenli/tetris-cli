@@ -16,12 +16,16 @@ int Menu::getChoice(){
         int x[3] = {xHalf - 6, xHalf - 5, xHalf - 2};
         int y = yHalf - 2;
 
+        wattron(win, A_BOLD);
+        mvwprintw(win, 2, xHalf - 13, "tetris-cli di Emre e Simone");
+        wattroff(win, A_BOLD);
+
         for(int i = 0; i < 3; i++){
             if(i == highlight){
                 wattron(win, A_BOLD);
                 wattron(win, A_ITALIC);
             }
-            mvwprintw(win, y, x[i], choices[i].c_str());
+            mvwprintw(win, y, x[i], "%s", choices[i].c_str());
             wattroff(win, A_BOLD);
             wattroff(win, A_ITALIC);
             wrefresh(win);

@@ -7,7 +7,6 @@ class Grid{
         WINDOW * win;
         Tetramino block;
         bool grid[20][10];
-        //int removedLines;
     public:
         Grid(WINDOW *);
         void addBlock();

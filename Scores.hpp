@@ -14,21 +14,3 @@ class Score{
         void get_score_str(char[]);
 };
 
-/*
-// Sottoclasse
-
-class Classifica: public Score{
-    protected:
-        WINDOW *win;
-        int scores[10];
-        int count;
-    public:
-        Classifica(int, int, int[], int, WINDOW *);
-        void update_classifica(int);
-        void display_classifica();
-        void swap(int&, int&);
-        void insertion_sort(int[], int);
-        void invert_sorted(int[]);
-};
-*/
-

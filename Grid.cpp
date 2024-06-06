@@ -121,7 +121,8 @@ int Grid::game(WINDOW * win){
 
         startOccupied = checkBlockArea();        
     }
-    return score.score;
+    cbreak();
+    return score.get_score();
 }
 
 
