@@ -50,6 +50,7 @@ int main(){
             wrefresh(menuwin);
             delwin(menuwin);
             refresh();
+            cbreak();
             classifica.display_classifica();
         }
 
