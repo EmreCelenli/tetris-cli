@@ -16,7 +16,6 @@ int main(){
         classifica.initialize_classifica();
     }
 
-
     int sel;
 
     do{
@@ -36,6 +35,7 @@ int main(){
             box(boxwin, 0, 0);
             wrefresh(boxwin);
             WINDOW * gridwin = newwin(20, 20, 1, 1);
+            srand(time(0));
             Grid grid(gridwin);
             keypad(gridwin, true);
             grid.displayGrid();

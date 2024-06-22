@@ -1,7 +1,6 @@
 #include "Tetramino.hpp"
 
 Tetramino::Tetramino(){
-    srand(time(0));
     this->id = rand() % 7;
 
     for(int i = 0; i < 4; i++)
