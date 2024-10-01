@@ -3,8 +3,8 @@
 
 Grid::Grid(WINDOW * win) : block(){
     this->win = win;
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 10; j++)
+    for(int i = 0; i < HEIGHT; i++){
+        for(int j = 0; j < WIDTH; j++)
             grid[i][j] = false;
     }
 }
@@ -18,8 +18,8 @@ void Grid::addBlock(){
 }
 
 void Grid::displayGrid(){
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j += 2){
+    for(int i = 0; i < HEIGHT; i++){
+        for(int j = 0; j < HEIGHT; j += 2){
             if(grid[i][j/2])
                 mvwprintw(win, i, j, "[]");
             else 
@@ -127,9 +127,9 @@ int Grid::game(WINDOW * win){
 
 int Grid::removeAllLines(){
     int removedLines = 0;
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < HEIGHT; i++){
         if(checkCompleted(i)){
-            for(int j = 0; j < 10; j++){
+            for(int j = 0; j < WIDTH; j++){
                 grid[i][j] = false;
             }  
             moveDownLines(i); 
@@ -141,14 +141,14 @@ int Grid::removeAllLines(){
 
 void Grid::moveDownLines(int line){
     for(int i = line; i > 0; i--){
-        for(int j = 0; j < 10; j++)
+        for(int j = 0; j < WIDTH; j++)
             grid[i][j] = grid[i-1][j];
     }
 }
 
 bool Grid::checkCompleted(int line){ // controlla che una riga sia completa
     bool isComplete = true;
-    for(int j = 0; j < 10; j++){
+    for(int j = 0; j < WIDTH; j++){
         if(!grid[line][j])
             isComplete = false;
     }
