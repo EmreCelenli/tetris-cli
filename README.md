@@ -20,7 +20,7 @@ Versione di Tetris in bianco e nero da linea di comando.
 
 ### Passaggi per l'Installazione
 
-1. Estrai `tetris-cli.zip`.
+1. Estrai `tetris-cli-main.zip`.
 
 2. Usare il commando `make` dal terminale all'interno della cartella di gioco.
 
